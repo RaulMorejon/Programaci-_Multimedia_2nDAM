@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class  MainActivity : AppCompatActivity() {
-///
+
     private lateinit var textoPantalla: TextView
     private var numero1: Double = 0.0
     private var numero2: Double = 0.0
@@ -19,15 +19,13 @@ class  MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        textoPantalla = findViewById(R.id.textoPantalla)
+        textoPantalla = findViewById(R.id.textoPantalla) // GUARDAMOS EL ELEMENTO
 
-
-        // EL BOTON PULSADO SE MOSTRARA POR LA PANTALLA
-
+        // GUARDAMOS LOS BOTONES POR SUS IDs EN UNA LISTA
         var botonesNumeros = listOf(R.id.boton0, R.id.boton1, R.id.boton2, R.id.boton3,
                     R.id.boton4, R.id.boton5, R.id.boton6, R.id.boton7, R.id.boton8, R.id.boton9)
 
-        // Escribimos todos los numeros pulsados por pantalla
+        // ESCRIBIMOS TODOS LOS NUMEROS PULSADSO POR PANTALLA
         for (id in botonesNumeros) {
             var boton: Button = findViewById(id)
             boton.setOnClickListener {
@@ -35,7 +33,7 @@ class  MainActivity : AppCompatActivity() {
             }
         }
 
-        // Encontramos los botones por su ID y lo guardamos en cada variable (los de calcular).
+        // Encontramos los botones por su ID y lo guardamos en cada variable (los de calcular)
         var botonSumar: Button = findViewById(R.id.botonSumar)
         var botonRestar: Button = findViewById(R.id.botonRestar)
         var botonMultiplicar: Button = findViewById(R.id.botonMultiplicar)
@@ -43,16 +41,16 @@ class  MainActivity : AppCompatActivity() {
         var botonDividir: Button = findViewById(R.id.botonDividir)
         var botonBorrar: Button = findViewById(R.id.botonBorrar)
 
-
         // Listeners de cada operación, pone todos los valores en sus variables generales
         botonSumar.setOnClickListener { guardarNumeroPantalla("+") }
         botonRestar.setOnClickListener { guardarNumeroPantalla("-") }
         botonMultiplicar.setOnClickListener { guardarNumeroPantalla("*") }
         botonDividir.setOnClickListener { guardarNumeroPantalla("/") }
+
         // Calculamos con lo que hay en numero1 y numero 2(este es lo ultimo que tenemos en pantalla)
         botonIgual.setOnClickListener { calcular() }
 
-        // Resete de todo
+        // Reset total
         botonBorrar.setOnClickListener {
             textoPantalla.text = "0"
             numero1 = 0.0
@@ -62,14 +60,13 @@ class  MainActivity : AppCompatActivity() {
         }
     }
 
-
-    // Solo falta que pueda sumar varios numero no solo dos si es posible sino no.
     private fun escribirNumero(numero: String) {
         if (nuevoNumero) {
             textoPantalla.text = numero
             nuevoNumero = false
-        } else textoPantalla.text = textoPantalla.text.toString() + numero // Si no es un numero nuevo se concatena con lo que hay
-
+        }
+        // SI NO ES UN NUMERO NUEVO SE CONCATENA CON LO QUE HAY
+        else textoPantalla.text = textoPantalla.text.toString() + numero
     }
 
     // GUARDA EL NUMERO QUE HABÍA POR PANTALLA PARA HACER LA OPERACION CON EL SIGUIENTE NUMERO
@@ -80,7 +77,8 @@ class  MainActivity : AppCompatActivity() {
     }
 
     private fun calcular() {
-        numero2 = textoPantalla.text.toString().toDouble() // sera lo ultimo que se muestra en la pantalla
+        // numero2 GUARDA EL ULTIMO NUMERO QUE HAY EN LA PANTALLA
+        numero2 = textoPantalla.text.toString().toDouble()
         val resultado = when (operador) {
             "+" -> numero1 + numero2
             "-" -> numero1 - numero2
@@ -88,7 +86,7 @@ class  MainActivity : AppCompatActivity() {
             "/" -> numero1 / numero2
             else -> 0.0
         }
-        textoPantalla.text = resultado.toString() // Mostramos
+        textoPantalla.text = resultado.toString() // MOSTRAMOS
         nuevoNumero = true
     }
 }
