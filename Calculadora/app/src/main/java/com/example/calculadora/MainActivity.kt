@@ -33,7 +33,7 @@ class  MainActivity : AppCompatActivity() {
             }
         }
 
-        // Encontramos los botones por su ID y lo guardamos en cada variable (los de calcular)
+        // Encontramos los botones por su ID y lo guardamos en cada variable (los de calcular )
         var botonSumar: Button = findViewById(R.id.botonSumar)
         var botonRestar: Button = findViewById(R.id.botonRestar)
         var botonMultiplicar: Button = findViewById(R.id.botonMultiplicar)
